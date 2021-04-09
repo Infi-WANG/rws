@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     if (window.location.port !== '') {
       app.backend = window.location.protocol + '//' + window.location.hostname + ':5001'; // Development configuration
     }
-    app.googleClientId = '1078092352894-a2te9m2ejqurfaap9frrvtg6krjds8pv.apps.googleusercontent.com';
+    app.googleClientId = '544422738518-r6qf5vkiitnvu21n19choe8qqefbkoad.apps.googleusercontent.com';
   });
 
   // Scroll page to top and expand header

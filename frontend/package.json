@@ -33,11 +33,15 @@
     "web-component-tester": "^3.4.0"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "test": "gulp test:local",
     "start": "gulp serve",
     "lint": "gulp lint"
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   }
 }

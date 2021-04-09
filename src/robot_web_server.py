@@ -7,7 +7,6 @@ from flask import request
 from flask import url_for
 from user_presence import blueprint as user_presence_blueprint
 import atexit
-import config
 import os
 import rosnode
 import secrets
@@ -30,8 +29,8 @@ class RobotWebServer(object):
         self._user_manager = user_manager
 
         # Start websocket server if needed.
-        # self._websocket_server = websocket_server
-        # self._websocket_server.launch()
+        #self._websocket_server = websocket_server
+        #self._websocket_server.launch()
 
         # Include routes for each app.
         self._app_manager = app_manager

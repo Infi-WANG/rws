@@ -4,28 +4,18 @@
   See https://github.com/hcrlab/rws/wiki/What-to-put-in-app.launch
  -->
 <launch>
-  <!-- PR2 bringup. -->
-  <include file="/etc/ros/robot.launch" />
-  <include file="$(find pr2_machine)/pr2.machine" />
-
   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
 
-  <!-- Tuck arms action -->
-  <node pkg="pr2_tuck_arms_action" type="tuck_arms.py" name="tuck_arms_action_server" />
-
-  <!-- Kinect -->
-  <include file="/var/ros/rws/launch/kinect.launch" />
-
-  <!-- Mongo ROS message DB -->  
-  <node name="mongo_msg_db" pkg="mongo_msg_db" type="db_node.py" />
-  <node name="static_cloud_db" pkg="static_cloud_db" type="static_cloud_db.py" />
-
   <!-- Web video server -->
-  <node name="ros_web_video" pkg="ros_web_video" type="ros_web_video">
-    <param name="port" value="9999" />
-    <param name="framerate" value="15" />
-    <param name="bitrate" value="250000" />
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server" output="screen">
+    <param name="port" value="8080" />
   </node>
+
+  <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" output="screen" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
   <!-- TF web republisher -->
   <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" />
@@ -33,13 +23,8 @@
   <!-- Interactive marker proxy will need to go here eventually -->
 
   <!-- MoveIt! -->
-  <include file="$(find rws)/launch/pr2_moveit.launch">
-    <arg name="moveit_octomap_sensor_params_file" value="/var/ros/rws/config/sensors_dummy.yaml"/>
-  </include>
 
   <!-- Custom landmarks -->
-  <!-- NOTE (jstn): this currently provides the only frontend that can be used to name objects, so run this on your desktop. -->
-  <!--include file="$(find rapid_perception)/launch/object_search.launch" machine="c2" /-->
 
   <!-- Cheats and special cases -->
   <!--
@@ -47,5 +32,6 @@
     We're cheating by placing this in this file because CodeIt is the only user of this.
     It allows CodeIt programs to instantly load.
   -->
-  <node pkg="code_it" type="programs.py" name="program_db" />
+  <!-- <node pkg="code_it" type="programs.py" name="program_db" /> -->
+
 </launch>

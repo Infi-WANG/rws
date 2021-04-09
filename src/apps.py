@@ -22,7 +22,8 @@ class AppManager(object):
         Returns a list of valid apps.
         """
         if self._catkin_ws is not None:
-            full_paths = [p for p in rospkg.get_ros_paths() if p.startswith(self._catkin_ws)]
+            dirs = os.listdir(self._catkin_ws)
+            full_paths = [ self._catkin_ws+folder for folder in dirs ]
             app_list = []
             for path in full_paths:
                 try:
