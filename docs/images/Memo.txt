@@ -1,2 +1,5 @@
 4月9日
-需要安装mongodb
+需要安装mongodb。
+需要把工作空间永久添加到环境：
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
